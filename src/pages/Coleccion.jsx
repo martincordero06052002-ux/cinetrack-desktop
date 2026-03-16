@@ -21,7 +21,7 @@ export default function Coleccion() {
     }
   };
 
-  // NUEVA FUNCIÓN: Ahora funciona como un interruptor (Toggle)
+  // Ahora funciona como un interruptor (Toggle)
   const cambiarEstado = async (pelicula) => {
     // Si está vista, la pasamos a pendiente. Si está pendiente, la pasamos a vista.
     const nuevoEstado = pelicula.estado === 'VISTA' ? 'PENDIENTE' : 'VISTA';
