@@ -1,16 +1,49 @@
-# React + Vite
+# CineTrack Desktop 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**CineTrack Desktop** es una aplicación multiplataforma diseñada para que los amantes del cine gestionen su diario personal de películas de forma privada y local. Inspirada en la estética de **Letterboxd**, permite buscar títulos, gestionar una colección y realizar un seguimiento del estado de visionado.
 
-Currently, two official plugins are available:
+## 🚀 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Buscador en Tiempo Real**: Conexión directa con la API de **The Movie Database (TMDB)** para obtener información actualizada de cualquier película.
+* **Gestión de Colección (CRUD)**:
+    * **Añadir**: Guarda películas desde el buscador a tu base de datos local.
+    * **Visualizar**: Lista completa de tu diario personal.
+    * **Actualizar**: Alterna el estado de una película entre "Pendiente" y "Vista".
+    * **Eliminar**: Borra títulos de tu colección con confirmación de seguridad.
+* **Privacidad Local**: Almacenamiento 100% local mediante **SQLite**, garantizando que tus datos te pertenecen.
+* **Interfaz Moderna**: Diseño oscuro y minimalista optimizado para la experiencia de usuario en escritorio.
 
-## React Compiler
+## 🛠️ Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Frontend**: React 19 (Vite) para una interfaz reactiva.
+* **Backend/Escritorio**: Electron.js para empaquetado nativo.
+* **Base de Datos**: SQLite (mediante `better-sqlite3`) para persistencia local.
+* **Estilos**: CSS3 con variables personalizadas para un modo oscuro elegante.
 
-## Expanding the ESLint configuration
+## 📦 Instalación y Ejecución
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
+
+1. **Clonar el repositorio**:
+   ```bash
+   git clone [https://github.com/martincordero06052002-ux/cinetrack-desktop.git](https://github.com/martincordero06052002-ux/cinetrack-desktop.git)
+   ```
+2. **Instalar dependencias**:
+   ```bash
+   npm install
+   ```
+3. **Configurar la API Key**:
+* **Obtén una API Key gratuita en The Movie Database.**
+* **Añade tu clave en la variable TMDB_API_KEY dentro de electron/main.cjs.**
+
+4. **Ejecutar en modo desarrollo**:
+   ```bash
+    npm run dev
+   ```
+## 📂 Estructura del Proyecto
+
+src/: Contiene el código fuente de la interfaz en React (componentes y páginas).
+
+electron/: Lógica del proceso principal de Electron, base de datos y puente de comunicación (Preload).
+
+database/: Directorio donde se genera el archivo cinetrack.db local.
