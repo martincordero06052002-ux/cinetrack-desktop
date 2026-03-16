@@ -21,8 +21,11 @@ export default function Coleccion() {
     }
   };
 
-  const marcarVista = async (pelicula) => {
-    await window.api.actualizarEstado(pelicula.id_local, 'VISTA');
+  // NUEVA FUNCIÓN: Ahora funciona como un interruptor (Toggle)
+  const cambiarEstado = async (pelicula) => {
+    // Si está vista, la pasamos a pendiente. Si está pendiente, la pasamos a vista.
+    const nuevoEstado = pelicula.estado === 'VISTA' ? 'PENDIENTE' : 'VISTA';
+    await window.api.actualizarEstado(pelicula.id_local, nuevoEstado);
     cargarDatos(); 
   };
 
@@ -38,13 +41,12 @@ export default function Coleccion() {
             pelicula={p} 
             estado={p.estado}
             
-            // Botón 1: Marcar Vista o Ver Ficha
-            textoPrincipal={p.estado === 'VISTA' ? "Ver Ficha" : "✔ Marcar Vista"}
-            accionPrincipal={p.estado === 'VISTA' ? () => alert("Ficha en desarrollo (Hito 5)") : marcarVista}
+            // EL BOTÓN AHORA ALTERNA EL TEXTO SEGÚN EL ESTADO
+            textoPrincipal={p.estado === 'VISTA' ? "🕒 Marcar Pendiente" : "✔ Marcar Vista"}
+            accionPrincipal={() => cambiarEstado(p)}
             
-            // Botón 2: El dichoso botón de Borrar
             textoSecundaria="🗑 Borrar"
-            accionSecundaria={eliminar}
+            accionSecundaria={() => eliminar(p)}
           />
         ))}
       </div>
